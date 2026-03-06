@@ -56,12 +56,6 @@ Hindi · Bengali · Tamil · Telugu · Kannada · Malayalam · Gujarati · Marat
 
 ---
 
-## Screenshots
-
-> *(Add screenshots here once published — show panel on YouTube page, fact-check results, notes output)*
-
----
-
 ## Installation
 
 ### From Chrome Web Store *(coming soon)*
