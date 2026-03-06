@@ -206,42 +206,6 @@ I-Pipe/
 
 ---
 
-## Publishing on Chrome Web Store
-
-To submit IPipe to the Chrome Web Store:
-
-1. Zip the extension folder (exclude `.git`, `node_modules`, etc.):
-   ```
-   zip -r ipipe.zip . --exclude "*.git*" --exclude "node_modules/*"
-   ```
-
-2. Go to the [Chrome Developer Dashboard](https://chrome.google.com/webstore/devconsole/)
-
-3. Click **"New Item"** → upload `ipipe.zip`
-
-4. Fill in:
-   - **Name**: IPipe — YouTube AI Analyzer
-   - **Short description** (132 chars max): AI-powered YouTube analyzer. Notes, multi-AI fact-check & Indian language translation — powered by Gemini, GPT-4o & Claude.
-   - **Detailed description**: (use the Features section above)
-   - **Category**: Productivity
-   - **Screenshots**: At least 1280×800 or 640×400 (required)
-   - **Promo tile**: 440×280 (optional but recommended)
-
-5. Under **Privacy** — declare that the extension:
-   - Uses remote code: No
-   - Collects user data: No (just explain keys are stored locally)
-
-6. Submit for review (usually 1–3 business days)
-
-### Icon Files
-The `icons/icon.svg` is the source file. Export it as PNG at:
-- `icon16.png` — 16×16 px
-- `icon48.png` — 48×48 px
-- `icon128.png` — 128×128 px
-
-You can use [Figma](https://figma.com), [Inkscape](https://inkscape.org/), or an online SVG-to-PNG converter like [svgtopng.com](https://svgtopng.com).
-
----
 
 ## Tech Stack
 
