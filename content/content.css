@@ -1,0 +1,506 @@
+/* ── IPipe v2.1 — Injected Panel Styles ───────────────────────── */
+
+#ytai-panel {
+  --ytai-bg: #0f1117;
+  --ytai-bg-card: #181a24;
+  --ytai-bg-hover: #1e2130;
+  --ytai-border: #2a2d3a;
+  --ytai-text: #e4e5ea;
+  --ytai-text-muted: #8b8fa3;
+  --ytai-text-dim: #5c6078;
+  --ytai-primary: #6c63ff;
+  --ytai-primary-hover: #7b73ff;
+  --ytai-primary-glow: rgba(108, 99, 255, 0.15);
+  --ytai-success: #10b981;
+  --ytai-error: #ef4444;
+  --ytai-warning: #f59e0b;
+  --ytai-radius: 12px;
+  --ytai-radius-sm: 8px;
+
+  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ytai-text);
+  background: var(--ytai-bg);
+  border: 1px solid var(--ytai-border);
+  border-radius: var(--ytai-radius);
+  margin-top: 16px;
+  margin-bottom: 16px;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Header ───────────────────────────────────────────────────── */
+#ytai-panel .ytai-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 13px 16px;
+  background: linear-gradient(135deg, rgba(108, 99, 255, 0.08) 0%, transparent 60%);
+  border-bottom: 1px solid var(--ytai-border);
+  cursor: pointer;
+  user-select: none;
+}
+#ytai-panel .ytai-header:hover {
+  background: linear-gradient(135deg, rgba(108, 99, 255, 0.12) 0%, transparent 60%);
+}
+#ytai-panel .ytai-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+#ytai-panel .ytai-logo-badge {
+  width: 30px;
+  height: 30px;
+  background: linear-gradient(135deg, #4338ca, #7c3aed);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 13px;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+#ytai-panel .ytai-logo-text {
+  font-size: 13.5px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+#ytai-panel .ytai-collapse-icon {
+  color: var(--ytai-text-muted);
+  transition: transform 0.3s;
+  font-size: 16px;
+}
+#ytai-panel.collapsed .ytai-collapse-icon { transform: rotate(180deg); }
+#ytai-panel.collapsed .ytai-body { display: none; }
+
+/* ── Body ─────────────────────────────────────────────────────── */
+#ytai-panel .ytai-body {
+  padding: 14px;
+}
+
+/* ── Status Bar ───────────────────────────────────────────────── */
+#ytai-panel .ytai-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 13px;
+  border-radius: var(--ytai-radius-sm);
+  font-size: 12.5px;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+#ytai-panel .ytai-status.info {
+  background: var(--ytai-primary-glow);
+  color: var(--ytai-primary);
+  border: 1px solid rgba(108, 99, 255, 0.2);
+}
+#ytai-panel .ytai-status.error {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--ytai-error);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+#ytai-panel .ytai-status.hidden { display: none; }
+
+/* ── Main Tabs (4 tabs) ───────────────────────────────────────── */
+#ytai-panel .ytai-tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 12px;
+}
+#ytai-panel .ytai-tab {
+  flex: 1;
+  padding: 9px 4px;
+  text-align: center;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--ytai-text-muted);
+  background: var(--ytai-bg-card);
+  border: 1px solid var(--ytai-border);
+  border-radius: var(--ytai-radius-sm);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+#ytai-panel .ytai-tab:hover {
+  background: var(--ytai-bg-hover);
+  border-color: var(--ytai-text-dim);
+}
+#ytai-panel .ytai-tab.active {
+  background: var(--ytai-primary-glow);
+  border-color: var(--ytai-primary);
+  color: var(--ytai-primary);
+}
+
+/* ── Tab Panel Content ────────────────────────────────────────── */
+#ytai-panel .ytai-panel-content { display: none; }
+#ytai-panel .ytai-panel-content.active { display: block; }
+
+/* Panel description text */
+#ytai-panel .ytai-panel-desc {
+  font-size: 12px;
+  color: var(--ytai-text-muted);
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+/* ── Cross-Check Options ──────────────────────────────────────── */
+#ytai-panel .ytai-cross-check {
+  background: var(--ytai-bg-card);
+  border: 1px solid var(--ytai-border);
+  border-radius: var(--ytai-radius-sm);
+  padding: 9px 12px;
+  margin-bottom: 10px;
+}
+#ytai-panel .ytai-ai-checkboxes {
+  display: flex;
+  gap: 16px;
+  margin-top: 6px;
+}
+#ytai-panel .ytai-ai-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  cursor: pointer;
+  color: var(--ytai-text-muted);
+}
+#ytai-panel .ytai-ai-checkbox input {
+  accent-color: var(--ytai-primary);
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+}
+
+/* ── AI Result Sub-Tabs ───────────────────────────────────────── */
+#ytai-panel .ytai-ai-result-tabs {
+  display: flex;
+  gap: 4px;
+  margin-top: 12px;
+  margin-bottom: 0;
+  background: var(--ytai-bg-card);
+  border: 1px solid var(--ytai-border);
+  border-radius: var(--ytai-radius-sm);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom: none;
+  padding: 5px 5px 0;
+}
+#ytai-panel .ytai-ai-result-tab {
+  padding: 6px 12px;
+  font-size: 11.5px;
+  font-weight: 600;
+  border-radius: 5px 5px 0 0;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  color: var(--ytai-text-muted);
+  transition: all 0.15s;
+}
+#ytai-panel .ytai-ai-result-tab.active {
+  background: var(--ytai-bg);
+  color: var(--ytai-primary);
+  border: 1px solid var(--ytai-border);
+  border-bottom: 1px solid var(--ytai-bg);
+  margin-bottom: -1px;
+}
+#ytai-panel .ytai-ai-result-tab:hover:not(.active) {
+  background: var(--ytai-bg-hover);
+  color: var(--ytai-text);
+}
+
+/* ── Note Style Selector ──────────────────────────────────────── */
+#ytai-panel .ytai-note-style {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+#ytai-panel .ytai-note-style-btn {
+  padding: 6px 11px;
+  font-size: 11.5px;
+  font-weight: 500;
+  background: var(--ytai-bg-card);
+  border: 1px solid var(--ytai-border);
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: var(--ytai-text-muted);
+}
+#ytai-panel .ytai-note-style-btn.active {
+  background: var(--ytai-primary-glow);
+  border-color: var(--ytai-primary);
+  color: var(--ytai-primary);
+}
+#ytai-panel .ytai-note-style-btn:hover:not(.active) {
+  border-color: var(--ytai-text-dim);
+}
+
+/* ── Section Tags (Summarize) ─────────────────────────────────── */
+#ytai-panel .ytai-sections {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 11px;
+}
+#ytai-panel .ytai-section-tag {
+  padding: 5px 11px;
+  font-size: 11.5px;
+  font-weight: 500;
+  background: var(--ytai-bg-card);
+  border: 1px solid var(--ytai-border);
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: var(--ytai-text-muted);
+}
+#ytai-panel .ytai-section-tag:hover { border-color: var(--ytai-text-dim); }
+#ytai-panel .ytai-section-tag.selected {
+  background: var(--ytai-primary-glow);
+  border-color: var(--ytai-primary);
+  color: var(--ytai-primary);
+}
+
+/* ── Textarea ─────────────────────────────────────────────────── */
+#ytai-panel .ytai-textarea {
+  width: 100%;
+  padding: 9px 12px;
+  background: var(--ytai-bg-card);
+  border: 1px solid var(--ytai-border);
+  border-radius: var(--ytai-radius-sm);
+  color: var(--ytai-text);
+  font-size: 13px;
+  font-family: inherit;
+  line-height: 1.5;
+  resize: vertical;
+  outline: none;
+  margin-bottom: 9px;
+  transition: border-color 0.2s;
+}
+#ytai-panel .ytai-textarea:focus {
+  border-color: var(--ytai-primary);
+  box-shadow: 0 0 0 2px var(--ytai-primary-glow);
+}
+#ytai-panel .ytai-textarea::placeholder { color: var(--ytai-text-dim); }
+
+/* ── Templates ────────────────────────────────────────────────── */
+#ytai-panel .ytai-templates {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 9px;
+}
+#ytai-panel .ytai-template-btn {
+  padding: 5px 10px;
+  font-size: 11.5px;
+  font-weight: 500;
+  background: var(--ytai-bg-card);
+  border: 1px solid var(--ytai-border);
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.15s;
+  color: var(--ytai-text-dim);
+}
+#ytai-panel .ytai-template-btn:hover {
+  border-color: var(--ytai-primary);
+  color: var(--ytai-primary);
+  background: var(--ytai-primary-glow);
+}
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+#ytai-panel .ytai-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 9px 16px;
+  font-size: 12.5px;
+  font-weight: 600;
+  border: none;
+  border-radius: var(--ytai-radius-sm);
+  cursor: pointer;
+  transition: all 0.2s;
+  width: 100%;
+}
+#ytai-panel .ytai-btn-primary {
+  background: var(--ytai-primary);
+  color: white;
+}
+#ytai-panel .ytai-btn-primary:hover { background: var(--ytai-primary-hover); }
+#ytai-panel .ytai-btn-primary:active { transform: scale(0.98); }
+#ytai-panel .ytai-btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+#ytai-panel .ytai-btn-secondary {
+  background: var(--ytai-bg-card);
+  color: var(--ytai-text);
+  border: 1px solid var(--ytai-border);
+}
+#ytai-panel .ytai-btn-secondary:hover {
+  background: var(--ytai-bg-hover);
+  border-color: var(--ytai-text-dim);
+}
+#ytai-panel .ytai-btn-secondary:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* ── Download Row (PDF + Word + Copy) ────────────────────────── */
+#ytai-panel .ytai-download-row {
+  display: flex;
+  gap: 6px;
+  margin-top: 10px;
+}
+#ytai-panel .ytai-download-row .ytai-btn {
+  flex: 1;
+  font-size: 11.5px;
+  padding: 8px 8px;
+}
+
+/* ── Results ──────────────────────────────────────────────────── */
+#ytai-panel .ytai-results {
+  margin-top: 0;
+  padding: 14px;
+  background: var(--ytai-bg-card);
+  border: 1px solid var(--ytai-border);
+  border-radius: 0 0 var(--ytai-radius-sm) var(--ytai-radius-sm);
+  max-height: 580px;
+  overflow-y: auto;
+}
+/* When there are no AI sub-tabs above, give top radius back */
+#ytai-panel .ytai-results:not(:is(.ytai-ai-result-tabs + .ytai-results)) {
+  margin-top: 12px;
+  border-radius: var(--ytai-radius-sm);
+}
+#ytai-panel .ytai-results.hidden { display: none; }
+
+/* Markdown rendering */
+#ytai-panel .ytai-results h2 {
+  font-size: 14.5px; font-weight: 700;
+  margin: 18px 0 9px; padding-bottom: 5px;
+  border-bottom: 1px solid var(--ytai-border);
+  color: var(--ytai-text);
+}
+#ytai-panel .ytai-results h2:first-child { margin-top: 0; }
+#ytai-panel .ytai-results h3 {
+  font-size: 13.5px; font-weight: 600;
+  margin: 12px 0 5px; color: var(--ytai-text);
+}
+#ytai-panel .ytai-results p {
+  margin: 5px 0; color: var(--ytai-text-muted); line-height: 1.65;
+}
+#ytai-panel .ytai-results ul, #ytai-panel .ytai-results ol {
+  margin: 7px 0; padding-left: 18px; color: var(--ytai-text-muted);
+}
+#ytai-panel .ytai-results li { margin: 4px 0; line-height: 1.6; }
+#ytai-panel .ytai-results strong { color: var(--ytai-text); font-weight: 600; }
+#ytai-panel .ytai-results hr { border: none; border-top: 1px solid var(--ytai-border); margin: 12px 0; }
+#ytai-panel .ytai-results blockquote {
+  border-left: 3px solid var(--ytai-primary);
+  padding: 8px 12px; margin: 9px 0;
+  background: var(--ytai-primary-glow);
+  border-radius: 0 var(--ytai-radius-sm) var(--ytai-radius-sm) 0;
+  color: var(--ytai-text-muted);
+}
+#ytai-panel .ytai-results code {
+  background: var(--ytai-bg); padding: 2px 5px;
+  border-radius: 4px; font-size: 12px; color: var(--ytai-primary);
+}
+
+/* ── Translate Section ────────────────────────────────────────── */
+#ytai-panel .ytai-translate-section {
+  margin-top: 10px;
+  background: var(--ytai-bg-card);
+  border: 1px solid var(--ytai-border);
+  border-radius: var(--ytai-radius-sm);
+  padding: 10px 12px;
+}
+#ytai-panel .ytai-translate-controls {
+  display: flex;
+  gap: 7px;
+  margin-top: 6px;
+  align-items: center;
+}
+#ytai-panel .ytai-language-select {
+  flex: 1;
+  padding: 7px 10px;
+  background: var(--ytai-bg);
+  border: 1px solid var(--ytai-border);
+  border-radius: var(--ytai-radius-sm);
+  color: var(--ytai-text);
+  font-size: 12.5px;
+  outline: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+#ytai-panel .ytai-language-select:focus {
+  border-color: var(--ytai-primary);
+}
+#ytai-panel .ytai-translate-btn {
+  flex: 0 0 auto;
+  width: auto;
+  padding: 7px 14px;
+  font-size: 12px;
+}
+#ytai-panel .ytai-translated-text {
+  margin-top: 10px;
+  padding: 12px;
+  background: var(--ytai-bg);
+  border: 1px solid var(--ytai-border);
+  border-radius: var(--ytai-radius-sm);
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--ytai-text);
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+/* ── Loading Spinner ──────────────────────────────────────────── */
+@keyframes ytai-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+#ytai-panel .ytai-spinner {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border: 2.5px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: ytai-spin 0.6s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes ytai-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.45; }
+}
+#ytai-panel .ytai-pulse { animation: ytai-pulse 1.5s ease-in-out infinite; }
+
+/* ── Status / Info Row ────────────────────────────────────────── */
+#ytai-panel .ytai-transcript-info {
+  font-size: 11.5px;
+  color: var(--ytai-text-dim);
+  margin-bottom: 11px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+#ytai-panel .ytai-transcript-info .ytai-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%; flex-shrink: 0;
+}
+#ytai-panel .ytai-transcript-info .ytai-dot.green { background: var(--ytai-success); }
+#ytai-panel .ytai-transcript-info .ytai-dot.red { background: var(--ytai-error); }
+
+/* ── Label ────────────────────────────────────────────────────── */
+#ytai-panel .ytai-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--ytai-text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  margin-bottom: 7px;
+}
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+#ytai-panel ::-webkit-scrollbar { width: 5px; }
+#ytai-panel ::-webkit-scrollbar-track { background: transparent; }
+#ytai-panel ::-webkit-scrollbar-thumb { background: var(--ytai-border); border-radius: 10px; }
+#ytai-panel ::-webkit-scrollbar-thumb:hover { background: var(--ytai-text-dim); }

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IPipe</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="app">
+    <!-- Header -->
+    <header class="header">
+      <div class="logo-row">
+        <div class="logo-icon">
+          <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- I-Pipe logo: flanged pipe connector shape -->
+            <rect x="1" y="1" width="18" height="5.5" rx="2.5" fill="white"/>
+            <rect x="7.5" y="6.5" width="5" height="9" fill="white"/>
+            <rect x="1" y="15.5" width="18" height="5.5" rx="2.5" fill="white"/>
+          </svg>
+        </div>
+        <div>
+          <h1 class="title">IPipe</h1>
+          <p class="subtitle">Notes · Fact-Check · Translate</p>
+        </div>
+      </div>
+    </header>
+
+    <!-- Tabs -->
+    <nav class="tabs">
+      <button class="tab active" data-tab="setup">Setup</button>
+      <button class="tab" data-tab="settings">Settings</button>
+      <button class="tab" data-tab="about">About</button>
+    </nav>
+
+    <!-- Setup Tab -->
+    <section class="tab-content active" id="tab-setup">
+
+      <!-- ── PRIMARY: Gemini ──────────────────────────────────── -->
+      <div class="section-divider">Primary AI (Required)</div>
+      <div class="card">
+        <label class="label" for="apiKeyInput">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
+          Google Gemini API Key
+        </label>
+        <p class="hint">Watches YouTube videos directly. Required for all features.</p>
+        <div class="input-group">
+          <input type="password" id="apiKeyInput" placeholder="AIza..." autocomplete="off" spellcheck="false">
+          <button class="btn-icon" id="toggleGeminiVisibility" title="Show/Hide">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </button>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn-primary" id="saveKeyBtn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+            Save
+          </button>
+          <button class="btn btn-secondary" id="verifyKeyBtn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            Verify
+          </button>
+        </div>
+        <div id="keyStatus" class="status hidden"></div>
+      </div>
+
+      <!-- ── OPTIONAL: Cross-Fact-Check AIs ─────────────────── -->
+      <div class="section-divider">Optional — Cross-Fact-Check AIs</div>
+      <p class="section-hint">Add one or both to cross-validate facts from multiple AI perspectives.</p>
+
+      <!-- OpenAI / ChatGPT -->
+      <div class="card">
+        <label class="label" for="openaiKeyInput">
+          <span style="color:#10a37f;font-weight:800;">⬡</span>
+          OpenAI / ChatGPT API Key
+        </label>
+        <p class="hint">Uses GPT-4o with web search for real-time fact-checking.</p>
+        <div class="input-group">
+          <input type="password" id="openaiKeyInput" placeholder="sk-..." autocomplete="off" spellcheck="false">
+          <button class="btn-icon" id="toggleOpenAIVisibility" title="Show/Hide">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </button>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn-primary" id="saveOpenAIBtn">Save</button>
+          <button class="btn btn-secondary" id="verifyOpenAIBtn">Verify</button>
+        </div>
+        <div id="openaiStatus" class="status hidden"></div>
+      </div>
+
+      <!-- Anthropic / Claude -->
+      <div class="card">
+        <label class="label" for="claudeKeyInput">
+          <span style="color:#d97706;font-weight:800;">◆</span>
+          Anthropic / Claude API Key
+        </label>
+        <p class="hint">Uses Claude Opus for deep reasoning-based fact analysis.</p>
+        <div class="input-group">
+          <input type="password" id="claudeKeyInput" placeholder="sk-ant-..." autocomplete="off" spellcheck="false">
+          <button class="btn-icon" id="toggleClaudeVisibility" title="Show/Hide">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </button>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn-primary" id="saveClaudeBtn">Save</button>
+          <button class="btn btn-secondary" id="verifyClaudeBtn">Verify</button>
+        </div>
+        <div id="claudeStatus" class="status hidden"></div>
+      </div>
+
+      <!-- ── OPTIONAL: Translation ───────────────────────────── -->
+      <div class="section-divider">Optional — Indian Language Translation</div>
+
+      <!-- Sarvam AI -->
+      <div class="card">
+        <label class="label" for="sarvamKeyInput">
+          <span style="color:#f97316;font-weight:800;">🇮🇳</span>
+          Sarvam AI API Key
+        </label>
+        <p class="hint">Translates notes & summaries to Hindi, Tamil, Telugu, Kannada, Bengali, and more.</p>
+        <div class="input-group">
+          <input type="password" id="sarvamKeyInput" placeholder="your-sarvam-key..." autocomplete="off" spellcheck="false">
+          <button class="btn-icon" id="toggleSarvamVisibility" title="Show/Hide">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </button>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn-primary" id="saveSarvamBtn">Save</button>
+          <button class="btn btn-secondary" id="verifySarvamBtn">Verify</button>
+        </div>
+        <div id="sarvamStatus" class="status hidden"></div>
+      </div>
+
+      <!-- Quick Start -->
+      <div class="card">
+        <h3 class="card-title">Quick Start</h3>
+        <ol class="steps">
+          <li>Get a Gemini key from <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">Google AI Studio</a></li>
+          <li>Optionally add OpenAI / Claude keys for cross-fact-checking</li>
+          <li>Optionally add a <a href="https://www.sarvam.ai/" target="_blank" rel="noopener">Sarvam AI</a> key for Indian language translation</li>
+          <li>Go to any YouTube video — the AI panel appears on the right</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Settings Tab -->
+    <section class="tab-content" id="tab-settings">
+      <div class="card">
+        <label class="label" for="defaultSections">Default Summary Sections</label>
+        <p class="hint">Choose which sections appear by default when summarizing</p>
+        <div class="checkbox-group" id="defaultSections">
+          <label class="checkbox-label">
+            <input type="checkbox" value="summary" checked> 📋 Summary
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" value="keyPoints" checked> 🔑 Key Points
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" value="actionPlan" checked> 🚀 Action Plan
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" value="takeaways" checked> 💡 Takeaways
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" value="timestamps"> ⏱️ Timestamps
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" value="quotes"> 💬 Quotes
+          </label>
+        </div>
+      </div>
+
+      <div class="card">
+        <label class="label" for="customInstructions">Custom Instructions</label>
+        <p class="hint">Appended to every prompt sent to Gemini</p>
+        <textarea id="customInstructions" rows="4" placeholder="e.g., Focus on scientific accuracy. Use simple language. Highlight logical fallacies..."></textarea>
+      </div>
+
+      <div class="card">
+        <label class="label" for="customPromptTemplates">Custom Prompt Templates</label>
+        <p class="hint">Reusable prompts (one per line, format: Name | Prompt)</p>
+        <textarea id="customPromptTemplates" rows="5" placeholder="Study Notes | Create detailed study notes with definitions and examples&#10;Blog Post | Turn this into a blog post with an engaging introduction&#10;Twitter Thread | Convert key points into a Twitter thread format"></textarea>
+      </div>
+
+      <button class="btn btn-primary full-width" id="saveSettingsBtn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+        Save Settings
+      </button>
+      <div id="settingsStatus" class="status hidden"></div>
+    </section>
+
+    <!-- About Tab -->
+    <section class="tab-content" id="tab-about">
+      <div class="card">
+        <h3 class="card-title">IPipe v2.1</h3>
+        <p class="about-text">
+          Your YouTube, piped through AI. Analyze any video with multi-AI intelligence — generate notes, fact-check with up to three AI models simultaneously, and translate to Indian regional languages.
+        </p>
+        <div class="features">
+          <div class="feature">
+            <span class="feature-icon">📓</span>
+            <div>
+              <strong>Smart Notes</strong>
+              <p>Study notes, Cornell notes, or flashcard Q&A — all from Gemini watching the video</p>
+            </div>
+          </div>
+          <div class="feature">
+            <span class="feature-icon">🔍</span>
+            <div>
+              <strong>Multi-AI Fact Check</strong>
+              <p>Cross-validate with Gemini + ChatGPT (web search) + Claude simultaneously</p>
+            </div>
+          </div>
+          <div class="feature">
+            <span class="feature-icon">🌐</span>
+            <div>
+              <strong>Indian Language Translation</strong>
+              <p>Translate to Hindi, Tamil, Telugu, Kannada, Bengali & 6 more via Sarvam AI</p>
+            </div>
+          </div>
+          <div class="feature">
+            <span class="feature-icon">📥</span>
+            <div>
+              <strong>Export</strong>
+              <p>Download notes and summaries as PDF or Word (.doc) files</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <p class="about-text muted">
+          All API keys are stored locally in your browser and sent only to their respective services. IPipe never collects or transmits your data. Video analysis uses Gemini's multimodal video understanding directly.
+        </p>
+      </div>
+    </section>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

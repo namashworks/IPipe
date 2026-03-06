@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -c \"s=''Generate smart notes, multi-AI fact-check & Indian translation for any YouTube video. Powered by Gemini, GPT-4o & Claude.''; print\\(f''{len\\(s\\)} chars''\\)\")",
+      "Bash(node -e \"const s=''Generate smart notes, multi-AI fact-check & Indian translation for any YouTube video. Powered by Gemini, GPT-4o & Claude.''; console.log\\(s.length + '' chars''\\);\")"
+    ]
+  }
+}

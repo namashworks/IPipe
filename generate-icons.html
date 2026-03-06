@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>IPipe — Generate Icons</title>
+  <style>
+    body { font-family: sans-serif; background: #0f1117; color: #e4e5ea; display: flex; flex-direction: column; align-items: center; padding: 40px; gap: 24px; }
+    h1 { color: #6c63ff; margin: 0; }
+    p { color: #8b8fa3; margin: 0; }
+    .icons { display: flex; gap: 32px; align-items: flex-end; }
+    canvas { border-radius: 20%; box-shadow: 0 8px 32px rgba(108,99,255,0.4); }
+    .btn { background: #6c63ff; color: white; border: none; padding: 12px 28px; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; margin-top: 8px; }
+    .btn:hover { background: #7b73ff; }
+    label { font-size: 12px; color: #5c6078; text-align: center; display: block; margin-top: 6px; }
+  </style>
+</head>
+<body>
+  <h1>IPipe Icon Generator</h1>
+  <p>Preview below — click each button to download the PNG at that size.</p>
+
+  <div class="icons">
+    <div style="text-align:center">
+      <canvas id="c128" width="128" height="128"></canvas>
+      <label>128 × 128</label>
+      <br><button class="btn" onclick="download('c128','icon128.png')">Download icon128.png</button>
+    </div>
+    <div style="text-align:center">
+      <canvas id="c48" width="48" height="48"></canvas>
+      <label>48 × 48</label>
+      <br><button class="btn" onclick="download('c48','icon48.png')">Download icon48.png</button>
+    </div>
+    <div style="text-align:center">
+      <canvas id="c16" width="16" height="16"></canvas>
+      <label>16 × 16</label>
+      <br><button class="btn" onclick="download('c16','icon16.png')">Download icon16.png</button>
+    </div>
+  </div>
+
+  <button class="btn" style="background:#10b981;font-size:16px;padding:14px 40px;" onclick="downloadAll()">
+    Download All 3 Icons
+  </button>
+
+  <script>
+    // ── Draw the IPipe logo on a canvas ──────────────────────────────
+    function drawLogo(canvas) {
+      const s = canvas.width;
+      const ctx = canvas.getContext('2d');
+
+      // Background: rounded square with purple gradient
+      const r = s * 0.203; // corner radius (~26/128)
+      ctx.clearRect(0, 0, s, s);
+
+      // Gradient background
+      const grad = ctx.createLinearGradient(0, 0, s, s);
+      grad.addColorStop(0, '#4338ca');
+      grad.addColorStop(1, '#7c3aed');
+
+      roundRect(ctx, 0, 0, s, s, r);
+      ctx.fillStyle = grad;
+      ctx.fill();
+
+      // Subtle top shine overlay
+      const shine = ctx.createLinearGradient(0, 0, 0, s * 0.5);
+      shine.addColorStop(0, 'rgba(255,255,255,0.13)');
+      shine.addColorStop(1, 'rgba(255,255,255,0)');
+      roundRect(ctx, 0, 0, s, s * 0.5, r);
+      ctx.fillStyle = shine;
+      ctx.fill();
+
+      // ── I-Pipe symbol ──────────────────────────────────────────────
+      // Proportions from original 128px design
+      const px = n => (n / 128) * s;
+
+      ctx.fillStyle = 'rgba(255,255,255,0.95)';
+
+      // Top flange
+      const flangeH = px(26);
+      const flangeW = px(88);
+      const flangeX = px(20);
+      const flangeR = px(10);
+      roundRect(ctx, flangeX, px(22), flangeW, flangeH, flangeR);
+      ctx.fill();
+
+      // Stem
+      ctx.fillRect(px(52), px(48), px(24), px(32));
+
+      // Bottom flange
+      roundRect(ctx, flangeX, px(80), flangeW, flangeH, flangeR);
+      ctx.fill();
+
+      // Flow dots on top flange (subtle, same color as background)
+      const dotR = px(4.5);
+      const dotY = px(35);
+      [px(46), px(64), px(82)].forEach((x, i) => {
+        ctx.beginPath();
+        ctx.arc(x, dotY, dotR, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(67, 56, 202, ${0.55 - i * 0.15})`;
+        ctx.fill();
+      });
+    }
+
+    function roundRect(ctx, x, y, w, h, r) {
+      ctx.beginPath();
+      ctx.moveTo(x + r, y);
+      ctx.lineTo(x + w - r, y);
+      ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+      ctx.lineTo(x + w, y + h - r);
+      ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+      ctx.lineTo(x + r, y + h);
+      ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+      ctx.lineTo(x, y + r);
+      ctx.quadraticCurveTo(x, y, x + r, y);
+      ctx.closePath();
+    }
+
+    function download(canvasId, filename) {
+      const canvas = document.getElementById(canvasId);
+      const a = document.createElement('a');
+      a.download = filename;
+      a.href = canvas.toDataURL('image/png');
+      a.click();
+    }
+
+    function downloadAll() {
+      setTimeout(() => download('c128', 'icon128.png'), 0);
+      setTimeout(() => download('c48',  'icon48.png'),  300);
+      setTimeout(() => download('c16',  'icon16.png'),  600);
+    }
+
+    // Draw all sizes on load
+    ['c128', 'c48', 'c16'].forEach(id => drawLogo(document.getElementById(id)));
+  </script>
+</body>
+</html>
