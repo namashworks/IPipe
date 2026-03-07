@@ -31,7 +31,7 @@ Gemini watches the video and generates structured notes in your preferred format
 ### 🔍 Multi-AI Fact Check
 Verify every claim in a video with up to three AI perspectives simultaneously:
 - **Gemini** (required) — watches the video directly, gives authenticity score 1–10
-- **GPT-4o with Web Search** (optional) — cross-validates with real-time internet
+- **GPT with Web Search** (optional) — cross-validates with real-time internet
 - **Claude** (optional) — deep reasoning-based analysis
 
 Each AI returns per-claim verdicts: ✅ True · ❌ False · ⚠️ Misleading · ❓ Unverified
