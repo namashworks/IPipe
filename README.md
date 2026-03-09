@@ -231,4 +231,4 @@ Pull requests welcome. For major changes, open an issue first to discuss.
 
 ---
 
-*Built with Gemini's multimodal video understanding · Designed for curious minds*
+*Built with Gemini's multimodal video understanding by Namash Aggarwal · Designed for curious minds*
